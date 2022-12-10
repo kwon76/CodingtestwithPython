@@ -30,4 +30,25 @@ max1, max2 = sorted(lst, reverse = True)[:2]
 print(max1, max2)
 total = 0
 
+#반복문 구현 구조를 잘 익혀두자. 반복변수가 m이 될 때까지가 아닌, m이 0이 될 때까지 더한 만큼 m값을 차감시키는 것이 포인트인 것 같다.
+while True:
+  for i in range(k):
+    if m == 0:
+      break
+    total += max1
+    m -= 1
+  if m == 0:
+    break
+  total += max2
+  m -= 1
 
+#위의 코드의 시간 복잡도는 O(m)이다. m의 크기가 커진다면 시간초과가 나므로 수학적 아이디어를 이용하여 시간 복잡도를 줄일 수 있다.
+#가장 큰 수를 k번 더하고 두 번째로 큰 수를 한번 더하는 것이 한 묶음이라 친다면, m이 k+1의 배수일 경우 그 몫만큼 곱해주면 된다.
+#m이 k+1에 나누어떨이지지 않을 경우, 그 나머지만큼 가장 큰 수를 더해주면 된다. 코드는 다음과 같다.
+"""
+count = (m // (k+1)) * k
+count += m % (k+1)
+total += count * max1
+total += (m-count) * max2
+"""
+print(total)
